@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moonrock Villas Bali — Romantic Private Pool Villas in Gianyar</title>
+  <meta name="description" content="Official promo site of Moonrock Villas, Gianyar, Bali. Ultra-luxury 1 & 2 bedroom private pool villas blending brutalist architecture with tropical nature near Ubud.">
+  
+  <!-- Awwwards Typography (Cormorant Garamond & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- Luxury Preloader -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <img src="/logo-white-moonrock.png" alt="Moonrock Villas" class="preloader-logo">
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">PRELOADING RESORT EXPERIENCE 0%</div>
+    </div>
+  </div>
+
+  <!-- Awwwards Global Header -->
+  <header class="global-header">
+    <!-- Left Menu Button -->
+    <button class="menu-toggle" id="menu-btn" aria-label="Open Menu">
+      <span class="hamburger-icon">
+        <span></span>
+        <span></span>
+      </span>
+      <span class="menu-text">MENU</span>
+    </button>
+    
+    <!-- Centered Logo -->
+    <div class="header-logo" data-goto="1">
+      <img src="/logo-white-moonrock.png" alt="Moonrock Villas" class="logo-img">
+    </div>
+    
+    <!-- Right Action Button -->
+    <div class="header-actions">
+      <a href="https://us2.cloudbeds.com/en/reservation/UbP1o5" target="_blank" class="btn-book-header btn-magnetic" data-magnetic>BOOK NOW</a>
+    </div>
+  </header>
+
+  <!-- Fullscreen Hamburger Menu Overlay -->
+  <div class="menu-overlay" id="menu-overlay">
+    <button class="menu-close" id="menu-close-btn">&times;</button>
+    <div class="menu-content">
+      <div class="menu-links">
+        <a href="#" data-goto="1" class="menu-item"><span class="num">01</span><span>HOME</span></a>
+        <a href="#" data-goto="2" class="menu-item"><span class="num">02</span><span>LOCATION</span></a>
+        <a href="#" data-goto="3" class="menu-item"><span class="num">03</span><span>THE SANCTUARY</span></a>
+        <a href="#" data-goto="4" class="menu-item"><span class="num">04</span><span>INFINITY POOL</span></a>
+        <a href="#" data-goto="5" class="menu-item"><span class="num">05</span><span>ARCHITECTURE</span></a>
+        <a href="#" data-goto="6" class="menu-item"><span class="num">06</span><span>ACCOMMODATION</span></a>
+        <a href="#" data-goto="7" class="menu-item"><span class="num">07</span><span>RESERVATIONS</span></a>
+      </div>
+      <div class="menu-footer">
+        <div class="menu-info">
+          <p class="label">LOCATION</p>
+          <p>Gianyar, Bali, Indonesia</p>
+        </div>
+        <div class="menu-info">
+          <p class="label">INQUIRIES</p>
+          <p>reservations@moonrockvillas.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Background Container -->
+  <div class="video-container">
+    <!-- Hero Looping Video (Screen 1 only) -->
+    <video id="hero-video" autoplay loop muted playsinline class="video-bg active"></video>
+    <!-- Scroll Flythrough Video (Screens 2-7) -->
+    <video id="scroll-video" muted playsinline class="video-bg"></video>
+    <!-- Overlay Gradient to darken videos for typography readability -->
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- Awwwards Vertical Timeline Navigator (Right Sidebar) -->
+  <div class="timeline-navigator">
+    <div class="timeline-counter">
+      <span id="active-slide-num" class="active-num">01</span>
+      <div class="timeline-indicator-line">
+        <div class="timeline-indicator-fill" id="timeline-fill"></div>
+      </div>
+      <span class="total-num">07</span>
+    </div>
+  </div>
+
+  <!-- Sections Wrapper -->
+  <main class="slides-wrapper" id="slides-container">
+
+    <!-- Screen 1: Hero Banner -->
+    <section class="slide active" id="slide-1">
+      <div class="container text-center">
+        <p class="tagline tracking-widest" data-reveal>ROMANTIC PRIVATE POOL VILLAS</p>
+        <h1 class="hero-title" data-reveal>Hidden <br>Within Bali</h1>
+        <p class="hero-subtitle" data-reveal>Feel the peace in the midst of nature. A sanctuary of brutalist design and tropical serenity in Gianyar.</p>
+        <div class="cta-group" data-reveal>
+          <button class="btn btn-filled btn-magnetic" data-goto="7" data-magnetic>BOOK A STAY</button>
+          <button class="btn btn-outline btn-magnetic" data-goto="2" data-magnetic>DISCOVER MORE</button>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span class="mouse-icon"><span class="mouse-wheel"></span></span>
+        <span class="scroll-text">SCROLL TO FLY</span>
+      </div>
+    </section>
+
+    <!-- Screen 2: Welcome & Location -->
+    <section class="slide" id="slide-2">
+      <!-- Blueprint Dimension Overlay -->
+      <div class="svg-drawing-overlay location-ruler" data-reveal>
+        <svg viewBox="0 0 100 100" class="svg-line-item" preserveAspectRatio="none">
+          <line x1="50" y1="0" x2="50" y2="60" class="draw-line-vertical" />
+          <circle cx="50" cy="60" r="3" class="draw-circle" />
+        </svg>
+        <span class="marker-label font-secondary">GIANYAR &bull; 20 MIN TO UBUD &bull; 15 MIN TO SANUR BEACH</span>
+      </div>
+
+      <div class="container text-center">
+        <p class="tagline tracking-widest" data-reveal>THE LOCATION</p>
+        <h2 class="section-title" data-reveal>Designed For <br>Slow Living</h2>
+        <p class="section-subtitle" data-reveal>Nestled in the quiet, green heart of Gianyar, Moonrock Villas blends modern brutalist design with the raw, vibrant beauty of Bali's tropical landscape.</p>
+      </div>
+    </section>
+
+    <!-- Screen 3: Panoramic Living Room -->
+    <section class="slide" id="slide-3">
+      <!-- Blueprint Dimension Overlay -->
+      <div class="svg-drawing-overlay radar-pointer" data-reveal>
+        <svg viewBox="0 0 300 150" class="svg-line-item" preserveAspectRatio="none">
+          <circle cx="50" cy="110" r="4" class="draw-circle radar-pulse" />
+          <polyline points="50,110 120,60 250,60" class="draw-polyline" />
+          <circle cx="250" cy="60" r="2.5" class="draw-circle" />
+        </svg>
+        <span class="marker-label font-secondary text-left" style="left: 125px; top: 35px;">54m² - 57m² OPEN CONCEPT</span>
+      </div>
+
+      <div class="container text-center">
+        <p class="tagline tracking-widest" data-reveal>THE SANCTUARY</p>
+        <h2 class="section-title" data-reveal>Your Own <br>Tropical Retreat</h2>
+        <p class="section-subtitle" data-reveal>Each of our 16 romantic villas offers a unique blend of privacy, luxury, and intimacy. Wake up to serene views of lush greenery and gentle streams.</p>
+      </div>
+    </section>
+
+    <!-- Screen 4: Infinity Pool & Terrace (2 Columns) -->
+    <section class="slide" id="slide-4">
+      <!-- Blueprint Dimension Overlay -->
+      <div class="svg-drawing-overlay pool-measurer" data-reveal>
+        <svg viewBox="0 0 600 80" class="svg-line-item" preserveAspectRatio="none">
+          <line x1="50" y1="40" x2="550" y2="40" class="draw-line-horizontal" />
+          <line x1="50" y1="25" x2="50" y2="55" class="draw-tick" />
+          <line x1="550" y1="25" x2="550" y2="55" class="draw-tick" />
+          <line x1="300" y1="32" x2="300" y2="48" class="draw-tick" />
+        </svg>
+        <span class="marker-label font-secondary">18.0m INFINITY POOL &bull; 1.4m DEPTH</span>
+      </div>
+
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="grid-col flex-center-left">
+            <div>
+              <p class="tagline tracking-widest" data-reveal>INFINITY POOL</p>
+              <h2 class="section-title align-left" data-reveal>Designed For <br>Slow Moments</h2>
+              <p class="section-subtitle align-left" data-reveal>Indulge in absolute serenity. The expansive terrace features premium loungers, an outdoor shower, and a fully private deck overlooking the tropical valley.</p>
+              <button class="btn btn-outline btn-magnetic" id="btn-specs" data-reveal data-magnetic>DOWNLOAD BROCHURE</button>
+            </div>
+          </div>
+          <div class="grid-col flex-center-right">
+            <div class="amenities-card" data-reveal>
+              <h3 class="card-title">RESORT SPECIFICATIONS</h3>
+              <ul class="amenities-list">
+                <li style="--i: 0"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>16 Private Romantic Villas</li>
+                <li style="--i: 1"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>54 - 57 m² One-Bedroom</li>
+                <li style="--i: 2"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>68 - 79 m² Two-Bedroom</li>
+                <li style="--i: 3"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>Queen Size Bedding</li>
+                <li style="--i: 4"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>Jungle & Stream Views</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 5: Open Spaces -->
+    <section class="slide" id="slide-5">
+      <!-- Blueprint Dimension Overlay -->
+      <div class="svg-drawing-overlay architect-frame" data-reveal>
+        <svg viewBox="0 0 400 200" class="svg-line-item" preserveAspectRatio="none">
+          <path d="M 40,15 L 15,15 L 15,45" class="draw-path" />
+          <path d="M 360,185 L 385,185 L 385,155" class="draw-path" />
+        </svg>
+        <span class="marker-label font-secondary text-right" style="right: 25px; bottom: 25px;">SUNKEN SOFA DECK &bull; ORGANIC TEXTURES</span>
+      </div>
+
+      <div class="container text-center">
+        <p class="tagline tracking-widest" data-reveal>THE ARCHITECTURE</p>
+        <h2 class="section-title" data-reveal>Open Spaces <br>For Living Well</h2>
+        <p class="section-subtitle" data-reveal>Brutalist design meets tropical warmth. Sun-drenched open spaces, raw concrete walls, and hand-selected wooden finishes merge indoor luxury with the wild jungle outside.</p>
+      </div>
+    </section>
+
+    <!-- Screen 6: Master Suite (2 Columns) -->
+    <section class="slide" id="slide-6">
+      <!-- Blueprint Dimension Overlay -->
+      <div class="svg-drawing-overlay bedroom-measurer" data-reveal>
+        <svg viewBox="0 0 400 80" class="svg-line-item" preserveAspectRatio="none">
+          <line x1="60" y1="40" x2="340" y2="40" class="draw-line-horizontal" />
+          <line x1="60" y1="28" x2="60" y2="52" class="draw-tick" />
+          <line x1="340" y1="28" x2="340" y2="52" class="draw-tick" />
+        </svg>
+        <span class="marker-label font-secondary">QUEEN SIZE BEDDING &bull; SMART CLIMATE CONTROL</span>
+      </div>
+
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="grid-col flex-center-left">
+            <div>
+              <p class="tagline tracking-widest" data-reveal>ACCOMMODATION</p>
+              <h2 class="section-title align-left" data-reveal>Rest Deeply, <br>Wake Naturally</h2>
+              <p class="section-subtitle align-left" data-reveal>Designed for absolute intimacy. Floor-to-ceiling glass panel sliding doors, integrated climate control, and open-air rain showers create a private cocoon of comfort.</p>
+              <button class="btn btn-outline btn-magnetic" id="btn-suites" data-reveal data-magnetic>VIEW VILLA DETAILS</button>
+            </div>
+          </div>
+          <div class="grid-col flex-center-right">
+            <div class="amenities-card" data-reveal>
+              <h3 class="card-title">INCLUDED COMFORT</h3>
+              <ul class="amenities-list">
+                <li style="--i: 0"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>In-villa Spa Massages</li>
+                <li style="--i: 1"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>Daily Gourmet Breakfast</li>
+                <li style="--i: 2"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>Air Conditioning & Safe</li>
+                <li style="--i: 3"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>Smart TV & High-Speed Wi-Fi</li>
+                <li style="--i: 4"><span class="icon-draw"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></span>24/7 Host & Butler Service</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 7: Night Final & Booking -->
+    <section class="slide" id="slide-7">
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="grid-col flex-center-left">
+            <div>
+              <p class="tagline tracking-widest" data-reveal>GET IN TOUCH</p>
+              <h2 class="section-title align-left" data-reveal>Your Private <br>Escape In Bali</h2>
+              
+              <div class="contact-details" data-reveal>
+                <div class="contact-item">
+                  <p class="contact-label">THE RESORT</p>
+                  <p class="contact-value">Gianyar, Bali, Indonesia</p>
+                </div>
+                <div class="contact-item">
+                  <p class="contact-label">TELEPHONE / WHATSAPP</p>
+                  <p class="contact-value"><a href="tel:+6281234567890" class="contact-link">+62 812 3456 7890</a></p>
+                </div>
+                <div class="contact-item">
+                  <p class="contact-label">EMAIL INQUIRIES</p>
+                  <p class="contact-value"><a href="mailto:reservations@moonrockvillas.com" class="contact-link">reservations@moonrockvillas.com</a></p>
+                </div>
+                <div class="contact-item">
+                  <p class="contact-label">FOLLOW RESORT LIFE</p>
+                  <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" class="social-link">Instagram</a>
+                    <a href="https://facebook.com" target="_blank" class="social-link">Facebook</a>
+                    <a href="https://pinterest.com" target="_blank" class="social-link">Pinterest</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid-col flex-center-right">
+            <div class="booking-form-container" data-reveal>
+              <h3 class="form-title">REQUEST A VILLA</h3>
+              <form id="booking-form" class="luxury-form">
+                <div class="form-group-awwwards">
+                  <input type="text" id="form-name" required placeholder=" ">
+                  <label for="form-name">YOUR NAME</label>
+                  <span class="input-line"></span>
+                </div>
+                <div class="form-group-awwwards">
+                  <input type="email" id="form-email" required placeholder=" ">
+                  <label for="form-email">YOUR EMAIL</label>
+                  <span class="input-line"></span>
+                </div>
+                <div class="form-group-awwwards">
+                  <input type="text" id="form-dates" required placeholder=" ">
+                  <label for="form-dates">PREFERRED DATES & VILLA TYPE</label>
+                  <span class="input-line"></span>
+                </div>
+                <div style="margin-top: 15px;">
+                  <button type="submit" class="btn btn-filled btn-magnetic w-full btn-circle-awwwards" data-magnetic>
+                    <span>SEND REQUEST</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="slide-footer">
+        <p>&copy; 2026 MOONROCK VILLAS BALI. ALL RIGHTS RESERVED. EXOTIC INTIMACY IN BALI.</p>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- Luxury Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Main JavaScript File -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
