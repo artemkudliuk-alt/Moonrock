@@ -102,13 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const clampedPercent = Math.min(percent, 99); // Hold at 99% until blobs are fully created
     
     progressBar.style.width = `${clampedPercent}%`;
-    progressText.innerText = `PRELOADING EXPERIENCE ${clampedPercent}%`;
+    if (progressText) {
+      progressText.innerText = `PRELOADING EXPERIENCE ${clampedPercent}%`;
+    }
   }
 
   function checkLoadingComplete() {
     if (loadedBlobs[0] && loadedBlobs[1]) {
       progressBar.style.width = '100%';
-      progressText.innerText = 'PRELOADING EXPERIENCE 100%';
+      if (progressText) {
+        progressText.innerText = 'PRELOADING EXPERIENCE 100%';
+      }
 
       // Assign Blobs
       heroVideo.src = loadedBlobs[0];
