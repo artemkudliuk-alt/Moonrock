@@ -52,95 +52,119 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastContainer = document.getElementById('toast-container');
 
   // --- BLOB CACHING & PRELOADER ---
-  const assetsToLoad = [
-    { url: '/Hero_banner video.mp4?v=2', size: 16303593, loaded: 0 },
-    { url: '/Video_scroll.mp4?v=2', size: 76059502, loaded: 0 }
-  ];
+  let heroVideoLoaded = false;
+  let scrollVideoLoaded = false;
+  let scrollVideoProgress = 0;
+  
+  const isMobileOrTablet = window.innerWidth <= 1024;
+  const scrollVideoUrl = isMobileOrTablet ? '/Video_scroll_720.mp4?v=2' : '/Video_scroll.mp4?v=2';
+  const scrollVideoSize = isMobileOrTablet ? 28571648 : 76059502; // ~27.9MB vs ~72.5MB
 
-  const totalBytes = assetsToLoad.reduce((acc, item) => acc + item.size, 0);
-  let loadedBlobs = [];
-
-  function preloadAssets() {
-    assetsToLoad.forEach((asset, index) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', asset.url, true);
-      xhr.responseType = 'blob';
-
-      xhr.onprogress = (e) => {
-        if (e.lengthComputable) {
-          asset.loaded = e.loaded;
-        } else {
-          // Fallback guess in case headers are not set
-          asset.loaded = Math.min(e.loaded, asset.size);
-        }
-        updateProgressBar();
-      };
-
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          loadedBlobs[index] = URL.createObjectURL(xhr.response);
-          checkLoadingComplete();
-        } else {
-          handlePreloadError(index, `Status ${xhr.status}`);
-        }
-      };
-
-      xhr.onerror = () => {
-        handlePreloadError(index, 'Network Error');
-      };
-
-      xhr.send();
-    });
-  }
-
-  function updateProgressBar() {
-    const totalLoaded = assetsToLoad.reduce((acc, item) => acc + item.loaded, 0);
-    const percent = Math.floor((totalLoaded / totalBytes) * 100);
-    const clampedPercent = Math.min(percent, 99); // Hold at 99% until blobs are fully created
+  // 1. Preload Hero Video only (16.3 MB) to unlock page quickly
+  function preloadHeroAsset() {
+    const heroUrl = '/Hero_banner video.mp4?v=2';
+    const heroSize = 16303593;
     
-    progressBar.style.width = `${clampedPercent}%`;
-    progressText.innerText = `PRELOADING EXPERIENCE ${clampedPercent}%`;
-  }
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', heroUrl, true);
+    xhr.responseType = 'blob';
 
-  function checkLoadingComplete() {
-    // If all assets are loaded (blobs present in array)
-    if (loadedBlobs[0] && loadedBlobs[1]) {
-      progressBar.style.width = '100%';
-      progressText.innerText = 'PRELOADING EXPERIENCE 100%';
+    xhr.onprogress = (e) => {
+      let loaded = e.loaded;
+      if (!e.lengthComputable) {
+        loaded = Math.min(e.loaded, heroSize);
+      }
+      const percent = Math.floor((loaded / heroSize) * 100);
+      progressBar.style.width = `${Math.min(percent, 99)}%`;
+      progressText.innerText = `PRELOADING EXPERIENCE ${Math.min(percent, 99)}%`;
+    };
 
-      // Assign Blobs
-      heroVideo.src = loadedBlobs[0];
-      scrollVideo.src = loadedBlobs[1];
-
-      // Prepare video play-pause handshake for iOS and general performance
-      scrollVideo.load();
-      scrollVideo.play().then(() => {
-        scrollVideo.pause();
-      }).catch(err => console.log('Video warm-up handshake completed.'));
-
-      // Fade out preloader
-      setTimeout(() => {
-        preloader.classList.add('fade-out');
-        // Initialize first slide reveal
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        progressBar.style.width = '100%';
+        progressText.innerText = 'PRELOADING EXPERIENCE 100%';
+        
+        heroVideo.src = URL.createObjectURL(xhr.response);
+        heroVideoLoaded = true;
+        
+        // Hide preloader and open site
         setTimeout(() => {
-          slides[0].classList.add('active');
-        }, 300);
-      }, 600);
-    }
+          preloader.classList.add('fade-out');
+          setTimeout(() => {
+            slides[0].classList.add('active');
+            // Start background loading of scroll video after site opens
+            preloadScrollAsset();
+          }, 300);
+        }, 600);
+      } else {
+        handlePreloadFallback();
+      }
+    };
+
+    xhr.onerror = () => {
+      handlePreloadFallback();
+    };
+
+    xhr.send();
   }
 
-  function handlePreloadError(index, reason) {
-    console.warn(`Preload failed for ${assetsToLoad[index].url} (${reason}). Falling back to stream.`);
-    // Fallback directly to CDN/Server URLs to keep the app working
-    heroVideo.src = assetsToLoad[0].url;
-    scrollVideo.src = assetsToLoad[1].url;
+  // 2. Background Load Scroll Video (72.5 MB / 27.9 MB)
+  function preloadScrollAsset() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', scrollVideoUrl, true);
+    xhr.responseType = 'blob';
+
+    xhr.onprogress = (e) => {
+      let loaded = e.loaded;
+      if (!e.lengthComputable) {
+        loaded = Math.min(e.loaded, scrollVideoSize);
+      }
+      scrollVideoProgress = Math.floor((loaded / scrollVideoSize) * 100);
+    };
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        scrollVideo.src = URL.createObjectURL(xhr.response);
+        scrollVideoLoaded = true;
+        scrollVideoProgress = 100;
+        
+        // Warm up video handshake
+        scrollVideo.load();
+        scrollVideo.play().then(() => {
+          scrollVideo.pause();
+        }).catch(err => console.log('Scroll video warmed up.'));
+      } else {
+        console.warn('Scroll video preload failed, falling back to stream.');
+        scrollVideo.src = scrollVideoUrl;
+        scrollVideoLoaded = true;
+        scrollVideoProgress = 100;
+      }
+    };
+
+    xhr.onerror = () => {
+      console.warn('Scroll video preload network error, falling back to stream.');
+      scrollVideo.src = scrollVideoUrl;
+      scrollVideoLoaded = true;
+      scrollVideoProgress = 100;
+    };
+
+    xhr.send();
+  }
+
+  function handlePreloadFallback() {
+    console.warn('Preload failed, falling back to stream.');
+    heroVideo.src = '/Hero_banner video.mp4?v=2';
+    scrollVideo.src = scrollVideoUrl;
+    heroVideoLoaded = true;
+    scrollVideoLoaded = true;
+    scrollVideoProgress = 100;
     
     preloader.classList.add('fade-out');
     slides[0].classList.add('active');
   }
 
   // Start preloading immediately
-  preloadAssets();
+  preloadHeroAsset();
 
 
   // --- VIDEO SCRUBBING ENGINE (requestAnimationFrame) ---
@@ -167,7 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       // Linearly interpolate time
       const currentTime = sourceTime + (targetTime - sourceTime) * progress;
-      scrollVideo.currentTime = currentTime;
+      
+      // On Android/Chrome, prevent decoder choke by skipping seeking if previous seek is not done
+      if (!scrollVideo.seeking) {
+        scrollVideo.currentTime = currentTime;
+      }
       
       // Continue animation loop
       requestAnimationFrame(animateVideoScrub);
@@ -178,6 +206,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isTransitioning) return;
     if (targetSlideIndex < 1 || targetSlideIndex > 7) return;
     if (targetSlideIndex === currentSlide) return;
+
+    // Check if background video is loaded before moving past Slide 1
+    if (targetSlideIndex > 1 && !scrollVideoLoaded) {
+      showToast(`LOADING RESORT FLYTHROUGH... ${scrollVideoProgress}%`);
+      return;
+    }
 
     const now = Date.now();
     if (now - lastScrollTime < scrollCooldownMs) return;
